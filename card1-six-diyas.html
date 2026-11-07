@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>The 6 Sacred Diyas — Kedia Family Diwali Greeting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Rozha+One&family=Yatra+One&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090a0f;
+      --card-bg: rgba(18, 20, 29, 0.94);
+      --gold-primary: #f0c05a;
+      --gold-light: #ffea9f;
+      --gold-dark: #b8860b;
+      --terracotta: #c85a32;
+      --text-muted: #a6adbb;
+      --text-bright: #f5f6f8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-bright);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      min-height: 100dvh;
+      width: 100%;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .ambient-glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 50%, rgba(240, 192, 90, 0) 0%, rgba(9, 10, 15, 1) 70%);
+      transition: background 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+      z-index: 0;
+    }
+
+    #sparkle-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Top Controls */
+    .top-controls {
+      position: absolute;
+      top: 0.9rem;
+      right: 1rem;
+      z-index: 50;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .pill-btn {
+      background: rgba(18, 20, 29, 0.85);
+      border: 1px solid rgba(240, 192, 90, 0.35);
+      color: var(--gold-light);
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      backdrop-filter: blur(8px);
+      transition: all 0.2s ease;
+    }
+
+    .pill-btn:hover {
+      background: rgba(240, 192, 90, 0.18);
+      color: #ffffff;
+    }
+
+    header {
+      z-index: 10;
+      text-align: center;
+      padding: 3rem 1rem 0.8rem;
+      width: 100%;
+      max-width: 550px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      border: 1px solid rgba(240, 192, 90, 0.3);
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 0.6rem;
+      background: rgba(240, 192, 90, 0.05);
+    }
+
+    h1 {
+      font-family: 'Rozha One', 'Cinzel', serif;
+      font-size: clamp(1.6rem, 5vw, 2.1rem);
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      color: #fff6e0;
+      text-shadow: 0 0 25px rgba(240, 192, 90, 0.3);
+      line-height: 1.25;
+      padding: 0 0.5rem;
+    }
+
+    .subtitle {
+      margin-top: 0.4rem;
+      font-size: clamp(0.8rem, 2.5vw, 0.92rem);
+      color: var(--text-muted);
+      font-weight: 300;
+      padding: 0 0.5rem;
+    }
+
+    .progress-text {
+      margin-top: 0.6rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      color: var(--gold-light);
+      font-weight: 500;
+    }
+
+    /* Thali & Diyas - Perfectly centered and sized to fit on all screens */
+    .altar-container {
+      z-index: 5;
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      padding: 0.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: auto 0;
+    }
+
+    .thali {
+      position: relative;
+      width: min(330px, 84vw);
+      height: min(330px, 84vw);
+      border-radius: 50%;
+      background: radial-gradient(circle, #1a1c26 0%, #11131b 65%, #0d0e14 100%);
+      border: 2px solid rgba(240, 192, 90, 0.22);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), inset 0 0 45px rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .thali-center-mandala {
+      width: 28%;
+      height: 28%;
+      border-radius: 50%;
+      border: 1px dashed rgba(240, 192, 90, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .thali-center-icon {
+      font-size: 1.4rem;
+      color: var(--gold-primary);
+      opacity: 0.45;
+    }
+
+    /* Diya node: placed using percentage coordinates & transform center */
+    .diya-node {
+      position: absolute;
+      width: 68px;
+      height: 72px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transform: translate(-50%, -50%);
+      transition: transform 0.2s ease;
+    }
+
+    .diya-node:hover {
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+
+    .diya-node:active {
+      transform: translate(-50%, -50%) scale(0.96);
+    }
+
+    .diya-pot-wrapper {
+      position: relative;
+      width: 44px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .diya-body {
+      position: absolute;
+      bottom: 0;
+      width: 42px;
+      height: 24px;
+      background: linear-gradient(180deg, #9b472a 0%, #682c18 100%);
+      border-radius: 0 0 24px 24px;
+      border-top: 3px solid #b85b37;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      transition: all 0.4s ease;
+    }
+
+    .diya-body::after {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 3px;
+      background: #441c0e;
+      border-radius: 2px;
+    }
+
+    .flame-wrapper {
+      position: absolute;
+      top: -28px;
+      left: 50%;
+      transform: translateX(-50%) scale(0);
+      transform-origin: bottom center;
+      width: 20px;
+      height: 32px;
+      opacity: 0;
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    .flame {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(0deg, #ff4e00 0%, #ffaa00 50%, #ffffff 100%);
+      border-radius: 50% 50% 35% 35% / 60% 60% 40% 40%;
+      filter: drop-shadow(0 0 10px #ff941a) drop-shadow(0 0 20px rgba(255, 170, 0, 0.8));
+      animation: flicker 1.4s infinite ease-in-out alternate;
+    }
+
+    .flame-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,185,45,0.4) 0%, rgba(255,140,0,0) 70%);
+      pointer-events: none;
+    }
+
+    @keyframes flicker {
+      0% { transform: scale(0.96) rotate(-2deg); }
+      50% { transform: scale(1.04) rotate(1deg); }
+      100% { transform: scale(0.98) rotate(2deg); }
+    }
+
+    .diya-node.lit .flame-wrapper {
+      transform: translateX(-50%) scale(1);
+      opacity: 1;
+    }
+
+    .diya-node.lit .diya-body {
+      box-shadow: 0 0 20px rgba(255, 170, 0, 0.45);
+      border-top-color: #e5874c;
+    }
+
+    /* Labels sit neatly directly below the diya so they never exceed boundaries */
+    .diya-label {
+      margin-top: 5px;
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+      color: #9ea4b5;
+      text-align: center;
+      white-space: nowrap;
+      transition: all 0.4s ease;
+      pointer-events: none;
+    }
+
+    .diya-node.lit .diya-label {
+      color: var(--gold-light);
+      text-shadow: 0 0 10px rgba(240, 192, 90, 0.6);
+    }
+
+    .tap-hint {
+      position: absolute;
+      top: -24px;
+      font-size: 0.65rem;
+      color: var(--gold-primary);
+      animation: bounce 1.2s infinite alternate ease-in-out;
+      pointer-events: none;
+      letter-spacing: 0.05em;
+    }
+
+    @keyframes bounce {
+      0% { transform: translateY(0); opacity: 0.8; }
+      100% { transform: translateY(-4px); opacity: 1; }
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 5, 8, 0.86);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .greeting-card {
+      background: linear-gradient(145deg, #181b26 0%, #10121a 100%);
+      border: 1px solid rgba(240, 192, 90, 0.4);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.85), 0 0 50px rgba(240, 192, 90, 0.15);
+      border-radius: 20px;
+      padding: 2.2rem 1.6rem;
+      max-width: 440px;
+      width: 95%;
+      max-height: 90vh;
+      overflow-y: auto;
+      text-align: center;
+      transform: translateY(20px) scale(0.95);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-overlay.active .greeting-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .card-diya-icon {
+      width: 46px;
+      height: 46px;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(240, 192, 90, 0.1);
+      border-radius: 50%;
+      border: 1px solid rgba(240, 192, 90, 0.3);
+      color: var(--gold-primary);
+      font-size: 1.3rem;
+    }
+
+    .festive-title {
+      font-family: 'Rozha One', 'Cinzel', serif;
+      font-size: clamp(1.8rem, 4vw, 2.1rem);
+      color: #fff4d2;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.6rem;
+      text-shadow: 0 0 20px rgba(240, 192, 90, 0.4);
+    }
+
+    .greeting-body {
+      font-size: clamp(0.88rem, 2.4vw, 0.95rem);
+      line-height: 1.65;
+      color: #c9cfdd;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    .family-signature {
+      border-top: 1px solid rgba(240, 192, 90, 0.2);
+      padding-top: 1.2rem;
+      margin-top: 0.8rem;
+    }
+
+    .signature-prefix {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      margin-bottom: 0.3rem;
+    }
+
+    .family-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+
+    .family-names {
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: #f1cf88;
+      font-weight: 400;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 0.6rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.7rem 1.2rem;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      border: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #f0c05a 0%, #d49a24 100%);
+      color: #1a1202;
+      box-shadow: 0 4px 15px rgba(212, 154, 36, 0.35);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.07);
+      color: #e2e6f0;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    @media (max-height: 680px) {
+      header { padding-top: 2rem; }
+      .altar-container { margin: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ambient-glow" id="ambientGlow"></div>
+  <canvas id="sparkle-canvas"></canvas>
+
+  <div class="top-controls">
+    <button class="pill-btn" onclick="toggleLanguage()">
+      <span>🌐</span> <span id="langBtnText">हिंदी</span>
+    </button>
+  </div>
+
+  <header>
+    <div class="badge" id="badgeText">Festive Blessing Ritual</div>
+    <h1 id="mainTitle">Light the 6 Sacred Diyas</h1>
+    <p class="subtitle" id="subTitle">Tap each diya to awaken its blessing and illuminate the home</p>
+    <div class="progress-text" id="progressText">0 of 6 Diyas Lit</div>
+  </header>
+
+  <main class="altar-container">
+    <div class="thali" id="thali">
+      <div class="thali-center-mandala">
+        <span class="thali-center-icon">🪔</span>
+      </div>
+
+      <!-- Diya 0: Top (50%, 14%) -->
+      <div class="diya-node" id="diya-0" style="top: 14%; left: 50%;" data-index="0">
+        <span class="tap-hint" id="tapHint">Tap</span>
+        <div class="diya-pot-wrapper">
+          <div class="flame-wrapper"><div class="flame"></div><div class="flame-glow"></div></div>
+          <div class="diya-body"></div>
+        </div>
+        <span class="diya-label" id="lbl-0">Aarogya</span>
+      </div>
+
+      <!-- Diya 1: Top-Right (82%, 32%) -->
+      <div class="diya-node" id="diya-1" style="top: 32%; left: 82%;" data-index="1">
+        <div class="diya-pot-wrapper">
+          <div class="flame-wrapper"><div class="flame"></div><div class="flame-glow"></div></div>
+          <div class="diya-body"></div>
+        </div>
+        <span class="diya-label" id="lbl-1">Shanti</span>
+      </div>
+
+      <!-- Diya 2: Bottom-Right (82%, 68%) -->
+      <div class="diya-node" id="diya-2" style="top: 68%; left: 82%;" data-index="2">
+        <div class="diya-pot-wrapper">
+          <div class="flame-wrapper"><div class="flame"></div><div class="flame-glow"></div></div>
+          <div class="diya-body"></div>
+        </div>
+        <span class="diya-label" id="lbl-2">Samriddhi</span>
+      </div>
+
+      <!-- Diya 3: Bottom (50%, 86%) -->
+      <div class="diya-node" id="diya-3" style="top: 86%; left: 50%;" data-index="3">
+        <div class="diya-pot-wrapper">
+          <div class="flame-wrapper"><div class="flame"></div><div class="flame-glow"></div></div>
+          <div class="diya-body"></div>
+        </div>
+        <span class="diya-label" id="lbl-3">Ananda</span>
+      </div>
+
+      <!-- Diya 4: Bottom-Left (18%, 68%) -->
+      <div class="diya-node" id="diya-4" style="top: 68%; left: 18%;" data-index="4">
+        <div class="diya-pot-wrapper">
+          <div class="flame-wrapper"><div class="flame"></div><div class="flame-glow"></div></div>
+          <div class="diya-body"></div>
+        </div>
+        <span class="diya-label" id="lbl-4">Utsaha</span>
+      </div>
+
+      <!-- Diya 5: Top-Left (18%, 32%) -->
+      <div class="diya-node" id="diya-5" style="top: 32%; left: 18%;" data-index="5">
+        <div class="diya-pot-wrapper">
+          <div class="flame-wrapper"><div class="flame"></div><div class="flame-glow"></div></div>
+          <div class="diya-body"></div>
+        </div>
+        <span class="diya-label" id="lbl-5">Vikas</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- Revealed Greeting Modal -->
+  <div class="modal-overlay" id="greetingModal">
+    <div class="greeting-card">
+      <div class="card-diya-icon">✨</div>
+      <h2 class="festive-title" id="modalTitle">Shubh Deepavali</h2>
+      <p class="greeting-body" id="modalBody">
+        May the six sacred lights of health, peace, prosperity, joy, radiance, and wisdom dissolve all darkness and brighten every corner of your home and life.
+      </p>
+
+      <div class="family-signature">
+        <div class="signature-prefix" id="sigPrefix">Warm festive greetings from</div>
+        <div class="family-title" id="familyTitle">Kedia Family</div>
+        <div class="family-names" id="familyNames">
+          Dr. Narayan, Geeta, Dushyant,<br>Trupti, Durva & Raghav
+        </div>
+      </div>
+
+      <div class="card-actions">
+        <button class="btn btn-secondary" id="resetBtn" onclick="resetCeremony()">Light Again</button>
+        <a class="btn btn-primary" id="shareBtn" href="#" target="_blank">Forward Greeting 🪔</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let audioCtx = null;
+    function initAudio() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    const bellFrequencies = [523.25, 587.33, 659.25, 783.99, 880.00, 1046.50];
+
+    function playBellSound(index) {
+      initAudio();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const freq = bellFrequencies[index % bellFrequencies.length];
+      const now = audioCtx.currentTime;
+
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, now);
+
+      const osc2 = audioCtx.createOscillator();
+      const gain2 = audioCtx.createGain();
+      osc2.type = 'triangle';
+      osc2.frequency.setValueAtTime(freq * 2.02, now);
+
+      gain.gain.setValueAtTime(0.3, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.8);
+      gain2.gain.setValueAtTime(0.12, now);
+      gain2.gain.exponentialRampToValueAtTime(0.0001, now + 1.2);
+
+      osc.connect(gain);
+      osc2.connect(gain2);
+      gain.connect(audioCtx.destination);
+      gain2.connect(audioCtx.destination);
+
+      osc.start(now);
+      osc2.start(now);
+      osc.stop(now + 1.8);
+      osc2.stop(now + 1.2);
+    }
+
+    function playCelebrationChime() {
+      initAudio();
+      bellFrequencies.forEach((freq, i) => {
+        setTimeout(() => {
+          if (!audioCtx) return;
+          const now = audioCtx.currentTime;
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now);
+          gain.gain.setValueAtTime(0.2, now);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 2.5);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 2.5);
+        }, i * 150);
+      });
+    }
+
+    let currentLang = 'en';
+    const i18n = {
+      en: {
+        langBtn: "हिंदी",
+        badge: "Festive Blessing Ritual",
+        title: "Light the 6 Sacred Diyas",
+        subtitle: "Tap each diya to awaken its blessing and illuminate the home",
+        progress: (c, t) => `${c} of ${t} Diyas Lit`,
+        tap: "Tap",
+        labels: ["Aarogya", "Shanti", "Samriddhi", "Ananda", "Utsaha", "Vikas"],
+        modalTitle: "Shubh Deepavali",
+        modalBody: "May the six sacred lights of health, peace, prosperity, joy, radiance, and wisdom dissolve all darkness and brighten every corner of your home and life.",
+        sigPrefix: "Warm festive greetings from",
+        familyTitle: "Kedia Family",
+        familyNames: "Dr. Narayan, Geeta, Dushyant,<br>Trupti, Durva & Raghav",
+        resetBtn: "Light Again",
+        shareBtn: "Forward Greeting 🪔",
+        shareText: "Wishing you and your loved ones a blessed & joyful Diwali! ✨\n— Kedia Family (Dr. Narayan, Geeta, Dushyant, Trupti, Durva and Raghav)"
+      },
+      hi: {
+        langBtn: "English",
+        badge: "पावन दीपोत्सव अनुष्ठान",
+        title: "६ पावन दीप प्रज्वलित करें",
+        subtitle: "प्रत्येक दीप को स्पर्श कर आशीर्वाद प्राप्त करें और घर को आलोकित करें",
+        progress: (c, t) => `${t} में से ${c} दीप प्रज्वलित`,
+        tap: "स्पर्श करें",
+        labels: ["आरोग्य", "शांति", "समृद्धि", "आनंद", "उत्साह", "विकास"],
+        modalTitle: "शुभ दीपावली",
+        modalBody: "आरोग्य, शांति, समृद्धि, आनंद, तेज और ज्ञान के ये ६ पावन दीप आपके जीवन से समस्त अंधकार मिटाकर हर कोने को सदा आलोकित रखें।",
+        sigPrefix: "हार्दिक शुभकामनाओं सहित",
+        familyTitle: "केडिया परिवार",
+        familyNames: "डॉ. नारायण, गीता, दुष्यंत,<br>तृप्ति, दुर्वा एवं राघव",
+        resetBtn: "पुनः प्रज्वलित करें",
+        shareBtn: "शुभकामनाएँ भेजें 🪔",
+        shareText: "दीपावली के पावन पर्व पर हार्दिक शुभकामनाएँ! ✨\n— केडिया परिवार (डॉ. नारायण, गीता, दुष्यंत, तृप्ति, दुर्वा एवं राघव)"
+      }
+    };
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      const t = i18n[lang];
+      document.getElementById('langBtnText').innerText = t.langBtn;
+      document.getElementById('badgeText').innerText = t.badge;
+      document.getElementById('mainTitle').innerText = t.title;
+      document.getElementById('subTitle').innerText = t.subtitle;
+      document.getElementById('modalTitle').innerText = t.modalTitle;
+      document.getElementById('modalBody').innerHTML = t.modalBody;
+      document.getElementById('sigPrefix').innerText = t.sigPrefix;
+      document.getElementById('familyTitle').innerText = t.familyTitle;
+      document.getElementById('familyNames').innerHTML = t.familyNames;
+      document.getElementById('resetBtn').innerText = t.resetBtn;
+      document.getElementById('shareBtn').innerText = t.shareBtn;
+      const hint = document.getElementById('tapHint');
+      if (hint) hint.innerText = t.tap;
+
+      for (let i = 0; i < 6; i++) {
+        const lbl = document.getElementById(`lbl-${i}`);
+        if (lbl) lbl.innerText = t.labels[i];
+      }
+      updateProgress();
+      document.getElementById('shareBtn').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(t.shareText)}`;
+    }
+
+    function toggleLanguage() {
+      applyLanguage(currentLang === 'en' ? 'hi' : 'en');
+    }
+
+    let litCount = 0;
+    const totalDiyas = 6;
+    const diyaNodes = document.querySelectorAll('.diya-node');
+    const ambientGlow = document.getElementById('ambientGlow');
+    const progressText = document.getElementById('progressText');
+    const greetingModal = document.getElementById('greetingModal');
+
+    diyaNodes.forEach((node) => {
+      node.addEventListener('click', () => {
+        if (!node.classList.contains('lit')) {
+          const index = parseInt(node.getAttribute('data-index'), 10);
+          node.classList.add('lit');
+          litCount++;
+          playBellSound(index);
+
+          const hint = document.getElementById('tapHint');
+          if (hint) hint.remove();
+
+          updateProgress();
+
+          if (litCount === totalDiyas) {
+            setTimeout(completeCeremony, 500);
+          }
+        }
+      });
+    });
+
+    function updateProgress() {
+      progressText.innerText = i18n[currentLang].progress(litCount, totalDiyas);
+      const glowIntensity = (litCount / totalDiyas) * 0.45;
+      ambientGlow.style.background = `radial-gradient(circle at 50% 50%, rgba(240, 192, 90, ${glowIntensity}) 0%, rgba(9, 10, 15, 1) 75%)`;
+    }
+
+    function completeCeremony() {
+      playCelebrationChime();
+      greetingModal.classList.add('active');
+    }
+
+    function resetCeremony() {
+      greetingModal.classList.remove('active');
+      diyaNodes.forEach(node => node.classList.remove('lit'));
+      litCount = 0;
+      updateProgress();
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    applyLanguage(urlParams.get('lang') === 'hi' ? 'hi' : 'en');
+
+    // Canvas Background
+    const canvas = document.getElementById('sparkle-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    const particles = [];
+    class Particle {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * width;
+        this.y = height + Math.random() * 20;
+        this.speedY = 0.3 + Math.random() * 0.8;
+        this.speedX = (Math.random() - 0.5) * 0.4;
+        this.radius = 0.8 + Math.random() * 1.5;
+        this.alpha = 0.1 + Math.random() * 0.5;
+      }
+      update() {
+        this.y -= this.speedY;
+        this.x += this.speedX;
+        if (this.y < -10) this.reset();
+      }
+      draw() {
+        ctx.fillStyle = `rgba(240, 192, 90, ${this.alpha})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    for (let i = 0; i < 40; i++) {
+      const p = new Particle();
+      p.y = Math.random() * height;
+      particles.push(p);
+    }
+    function loop() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(loop);
+    }
+    loop();
+  </script>
+</body>
+</html>

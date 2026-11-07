@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kedia Family — 5 Interactive Diwali Greeting Cards</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Rozha+One&family=Yatra+One&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090a0f;
+      --panel: #11131c;
+      --border: rgba(240, 192, 90, 0.22);
+      --gold: #f0c05a;
+      --gold-light: #ffea9f;
+      --text: #f0f3fa;
+      --text-muted: #8e96aa;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: rgba(17, 19, 28, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.9rem 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #fff8e8;
+    }
+
+    .brand-subtitle {
+      font-size: 0.76rem;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+
+    .tab-nav {
+      display: flex;
+      gap: 0.45rem;
+      background: rgba(8, 9, 14, 0.6);
+      padding: 0.3rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      overflow-x: auto;
+      max-width: 100%;
+    }
+
+    .tab-btn {
+      padding: 0.5rem 0.95rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .tab-btn:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, #f0c05a 0%, #d49a24 100%);
+      color: #161002;
+      font-weight: 700;
+      box-shadow: 0 2px 10px rgba(212, 154, 36, 0.35);
+    }
+
+    .view-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .pill-toggle {
+      background: rgba(240, 192, 90, 0.12);
+      border: 1px solid rgba(240, 192, 90, 0.4);
+      color: var(--gold-light);
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+    }
+
+    .pill-toggle:hover {
+      background: rgba(240, 192, 90, 0.25);
+      color: #ffffff;
+    }
+
+    .view-btn {
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-muted);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .view-btn:hover, .view-btn.active {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(240, 192, 90, 0.35);
+    }
+
+    .summary-strip {
+      background: #0d0f17;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 0.7rem 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.82rem;
+    }
+
+    .summary-desc {
+      color: var(--text-muted);
+    }
+
+    .summary-desc strong {
+      color: var(--gold-light);
+    }
+
+    .full-tab-link {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .full-tab-link:hover {
+      text-decoration: underline;
+    }
+
+    .preview-stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background: radial-gradient(circle at 50% 50%, #131622 0%, #090a0f 80%);
+      min-height: calc(100vh - 130px);
+    }
+
+    .frame-wrapper {
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      width: 100%;
+      height: 820px;
+    }
+
+    .frame-wrapper.mobile-mode {
+      width: 390px;
+      height: 780px;
+      border: 10px solid #242938;
+      border-radius: 46px;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.95), 0 0 40px rgba(240, 192, 90, 0.1);
+      overflow: hidden;
+    }
+
+    .frame-wrapper.mobile-mode::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 110px;
+      height: 22px;
+      background: #242938;
+      border-radius: 20px;
+      z-index: 10;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      background: #090a0f;
+    }
+
+    @media (max-width: 900px) {
+      header { flex-direction: column; align-items: flex-start; }
+      .tab-nav { width: 100%; }
+      .view-controls { width: 100%; justify-content: space-between; }
+      .preview-stage { padding: 0.5rem; }
+      .frame-wrapper.mobile-mode { width: 100%; height: 700px; border-width: 4px; border-radius: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <div class="brand-title" id="hubBrandTitle">Kedia Family</div>
+      <div class="brand-subtitle" id="hubBrandSub">5 Interactive Diwali Card Variations</div>
+    </div>
+
+    <nav class="tab-nav">
+      <button class="tab-btn active" onclick="loadCard('card1-six-diyas.html', 0)">
+        <span>🪔</span> <span id="tab0">1. Six Sacred Diyas</span>
+      </button>
+      <button class="tab-btn" onclick="loadCard('card2-sparkler.html', 1)">
+        <span>✨</span> <span id="tab1">2. Phooljhadi Sparkler</span>
+      </button>
+      <button class="tab-btn" onclick="loadCard('card3-sky-lantern.html', 2)">
+        <span>🏮</span> <span id="tab2">3. Sky Lantern</span>
+      </button>
+      <button class="tab-btn" onclick="loadCard('card4-rangoli-bloom.html', 3)">
+        <span>🌸</span> <span id="tab3">4. Rangoli Bloom</span>
+      </button>
+      <button class="tab-btn" onclick="loadCard('card5-wax-sealed-letter.html', 4)">
+        <span>📜</span> <span id="tab4">5. Royal Sealed Letter</span>
+      </button>
+    </nav>
+
+    <div class="view-controls">
+      <button class="pill-toggle" onclick="toggleGlobalLang()">
+        <span>🌐</span> <span id="hubLangLabel">हिंदी</span>
+      </button>
+      <button class="view-btn active" id="mobileViewBtn" onclick="setViewMode('mobile')">📱 Mobile</button>
+      <button class="view-btn" id="fullViewBtn" onclick="setViewMode('full')">💻 Full</button>
+      <a class="view-btn" id="newTabBtn" href="card1-six-diyas.html" target="_blank">↗ Link</a>
+    </div>
+  </header>
+
+  <div class="summary-strip">
+    <div class="summary-desc" id="summaryDesc">
+      <strong>Concept 1: The 6 Sacred Diyas</strong> — A progressive lighting ritual featuring 6 individual blessings dedicated from Dr. Narayan, Geeta, Dushyant, Trupti, Durva & Raghav.
+    </div>
+    <a class="full-tab-link" id="directShareLink" href="card1-six-diyas.html" target="_blank">Open Full Card ↗</a>
+  </div>
+
+  <main class="preview-stage">
+    <div class="frame-wrapper mobile-mode" id="frameWrapper">
+      <iframe id="cardFrame" src="card1-six-diyas.html"></iframe>
+    </div>
+  </main>
+
+  <script>
+    let globalLang = 'en';
+
+    const cardData = {
+      en: [
+        {
+          file: 'card1-six-diyas.html',
+          desc: '<strong>Concept 1: The 6 Sacred Diyas</strong> — A progressive lighting ritual with sacred bells, featuring 6 individual blessings dedicated from each family member.'
+        },
+        {
+          file: 'card2-sparkler.html',
+          desc: '<strong>Concept 2: The Phooljhadi Sparkler</strong> — A playful tactile light-painting canvas with particle spark physics, crackle sounds, and celebratory embers.'
+        },
+        {
+          file: 'card3-sky-lantern.html',
+          desc: '<strong>Concept 3: Akashteer (Sky Lantern)</strong> — Press & hold to ignite an artisanal lantern, releasing it into a starlit night sky alongside rising wishes.'
+        },
+        {
+          file: 'card4-rangoli-bloom.html',
+          desc: '<strong>Concept 4: Rangoli Bloom</strong> — Tap concentric rings of a sacred mandala to bloom turmeric, vermilion, emerald, and center diya flame with falling petals.'
+        },
+        {
+          file: 'card5-wax-sealed-letter.html',
+          desc: '<strong>Concept 5: Royal Wax-Sealed Letter</strong> — Tap to break the red vermilion wax seal with a sitar chime, opening a 3D festive envelope to reveal an ivory parchment letter.'
+        }
+      ],
+      hi: [
+        {
+          file: 'card1-six-diyas.html',
+          desc: '<strong>विकल्प १: ६ पावन दीप</strong> — प्रत्येक दीप को स्पर्श कर आशीर्वाद प्राप्त करें; ६ पारिवारिक सदस्यों की ओर से ६ पावन मंगलकामनाएँ।'
+        },
+        {
+          file: 'card2-sparkler.html',
+          desc: '<strong>विकल्प २: फुलझड़ी कैनवास</strong> — स्क्रीन पर उंगली घुमाकर सुनहरी फुलझड़ी से रोशनी बिखेरें और मंगलमय संदेश प्राप्त करें।'
+        },
+        {
+          file: 'card3-sky-lantern.html',
+          desc: '<strong>विकल्प ३: आकाशदीप</strong> — लालटेन को २ सेकंड दबाए रखें, ज्योति जलाएँ और तारों भरे गगन में अपनी शुभकामनाएँ विदा करें।'
+        },
+        {
+          file: 'card4-rangoli-bloom.html',
+          desc: '<strong>विकल्प ४: पावन रंगोली</strong> — रंगोली को स्पर्श कर उसके हल्दी, कुमकुम व मरकत रंगों और पंखुड़ियों को खिलाएँ।'
+        },
+        {
+          file: 'card5-wax-sealed-letter.html',
+          desc: '<strong>विकल्प ५: शाही स्नेह-पत्र</strong> — सितार की मधुर धुन के साथ लाख की मुहर खोलें और एक सुंदर आत्मीय दीपावली पत्र पढ़ें।'
+        }
+      ]
+    };
+
+    const cardFrame = document.getElementById('cardFrame');
+    const summaryDesc = document.getElementById('summaryDesc');
+    const newTabBtn = document.getElementById('newTabBtn');
+    const directShareLink = document.getElementById('directShareLink');
+    const frameWrapper = document.getElementById('frameWrapper');
+    const mobileViewBtn = document.getElementById('mobileViewBtn');
+    const fullViewBtn = document.getElementById('fullViewBtn');
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const hubLangLabel = document.getElementById('hubLangLabel');
+
+    let currentIndex = 0;
+
+    function loadCard(file, index) {
+      currentIndex = index;
+      const urlWithLang = `${file}?lang=${globalLang}`;
+      cardFrame.src = urlWithLang;
+      summaryDesc.innerHTML = cardData[globalLang][index].desc;
+      newTabBtn.href = urlWithLang;
+      directShareLink.href = urlWithLang;
+
+      tabButtons.forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+    }
+
+    function toggleGlobalLang() {
+      globalLang = (globalLang === 'en') ? 'hi' : 'en';
+      hubLangLabel.innerText = globalLang === 'en' ? 'हिंदी' : 'English';
+      
+      if (globalLang === 'hi') {
+        document.getElementById('hubBrandSub').innerText = '५ परस्पर संवादात्मक दीपावली कार्ड';
+        document.getElementById('tab0').innerText = '१. ६ पावन दीप';
+        document.getElementById('tab1').innerText = '२. फुलझड़ी कैनवास';
+        document.getElementById('tab2').innerText = '३. आकाशदीप';
+        document.getElementById('tab3').innerText = '४. पावन रंगोली';
+        document.getElementById('tab4').innerText = '५. शाही स्नेह-पत्र';
+      } else {
+        document.getElementById('hubBrandSub').innerText = '5 Interactive Diwali Card Variations';
+        document.getElementById('tab0').innerText = '1. Six Sacred Diyas';
+        document.getElementById('tab1').innerText = '2. Phooljhadi Sparkler';
+        document.getElementById('tab2').innerText = '3. Sky Lantern';
+        document.getElementById('tab3').innerText = '4. Rangoli Bloom';
+        document.getElementById('tab4').innerText = '5. Royal Sealed Letter';
+      }
+
+      loadCard(cardData.en[currentIndex].file, currentIndex);
+    }
+
+    function setViewMode(mode) {
+      if (mode === 'mobile') {
+        frameWrapper.classList.add('mobile-mode');
+        mobileViewBtn.classList.add('active');
+        fullViewBtn.classList.remove('active');
+      } else {
+        frameWrapper.classList.remove('mobile-mode');
+        mobileViewBtn.classList.remove('active');
+        fullViewBtn.classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>
